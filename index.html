@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#00ff88">
     <meta name="description" content="TabletDAW - Mobile Music Studio">
-    
+
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- iOS Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="TabletDAW">
     <link rel="apple-touch-icon" href="icons/icon-192.png">
-    
+
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    
+
     <title>TabletDAW - Mobile Music Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -43,16 +46,16 @@
             --text-primary: #ffffff;
             --text-secondary: #8888aa;
             --border-color: #2a2a3a;
-            --grid-line: rgba(255,255,255,0.06);
-            --grid-line-bar: rgba(255,255,255,0.2);
-            
+            --grid-line: rgba(255, 255, 255, 0.06);
+            --grid-line-bar: rgba(255, 255, 255, 0.2);
+
             --cell-width: 25px;
             --cell-height: 18px;
             --beats-per-bar: 4;
             --bar-width: calc(var(--cell-width) * var(--beats-per-bar));
             --piano-width: 44px;
             --track-info-width: 100px;
-            
+
             --safe-top: env(safe-area-inset-top);
             --safe-bottom: env(safe-area-inset-bottom);
             --safe-left: env(safe-area-inset-left);
@@ -81,12 +84,14 @@
             height: 100%;
             width: 100%;
             background: var(--bg-primary);
-            background-image: 
-                radial-gradient(ellipse at 50% 0%, rgba(0,255,136,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(153,102,255,0.06) 0%, transparent 40%);
+            background-image:
+                radial-gradient(ellipse at 50% 0%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(153, 102, 255, 0.06) 0%, transparent 40%);
         }
 
-        .start-screen.hidden { display: none; }
+        .start-screen.hidden {
+            display: none;
+        }
 
         .start-logo {
             font-size: clamp(32px, 8vw, 48px);
@@ -119,7 +124,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 8px 32px rgba(153,102,255,0.3);
+            box-shadow: 0 8px 32px rgba(153, 102, 255, 0.3);
         }
 
         .new-project-btn:active {
@@ -143,7 +148,9 @@
             width: 100%;
         }
 
-        .app-container.show { display: flex; }
+        .app-container.show {
+            display: flex;
+        }
 
         /* Toolbar */
         .toolbar {
@@ -271,14 +278,16 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
 
-        .modal-overlay.show { display: flex; }
+        .modal-overlay.show {
+            display: flex;
+        }
 
         .modal {
             background: var(--bg-secondary);
@@ -363,7 +372,9 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .piano-keys::-webkit-scrollbar { display: none; }
+        .piano-keys::-webkit-scrollbar {
+            display: none;
+        }
 
         .piano-key {
             height: var(--cell-height);
@@ -373,7 +384,7 @@
             justify-content: flex-end;
             padding-right: 4px;
             font-size: 8px;
-            border-bottom: 1px solid rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -449,8 +460,13 @@
             height: var(--cell-height);
         }
 
-        .grid-row.black-key { background: rgba(0,0,0,0.3); }
-        .grid-row.c-note { border-bottom: 1px solid var(--grid-line-bar); }
+        .grid-row.black-key {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-row.c-note {
+            border-bottom: 1px solid var(--grid-line-bar);
+        }
 
         .grid-cell {
             width: var(--cell-width);
@@ -462,7 +478,9 @@
             flex-shrink: 0;
         }
 
-        .grid-cell.bar-start { border-right: 1px solid var(--grid-line-bar); }
+        .grid-cell.bar-start {
+            border-right: 1px solid var(--grid-line-bar);
+        }
 
         /* Notes */
         .note {
@@ -475,12 +493,18 @@
             align-items: center;
             padding-left: 3px;
             font-size: 7px;
-            color: rgba(0,0,0,0.6);
+            color: rgba(0, 0, 0, 0.6);
             overflow: hidden;
         }
 
-        .note.selected { box-shadow: 0 0 0 2px #fff; }
-        .note.preview { opacity: 0.5; pointer-events: none; }
+        .note.selected {
+            box-shadow: 0 0 0 2px #fff;
+        }
+
+        .note.preview {
+            opacity: 0.5;
+            pointer-events: none;
+        }
 
         .note-resize {
             position: absolute;
@@ -489,7 +513,7 @@
             bottom: 0;
             width: 12px;
             cursor: ew-resize;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 0 3px 3px 0;
         }
 
@@ -544,7 +568,9 @@
             min-height: 45px;
         }
 
-        .audio-track.active { background: rgba(0,255,136,0.05); }
+        .audio-track.active {
+            background: rgba(0, 255, 136, 0.05);
+        }
 
         .track-info {
             width: 90px;
@@ -649,16 +675,41 @@
         }
 
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
 
         /* Landscape optimization */
         @media (max-height: 500px) {
-            .toolbar { padding: 4px 6px; min-height: 40px; }
-            .toolbar-btn { padding: 6px 10px; font-size: 10px; }
-            .audio-tracks-section { max-height: 25%; min-height: 60px; }
-            .audio-track { height: 40px; min-height: 40px; }
+            .toolbar {
+                padding: 4px 6px;
+                min-height: 40px;
+            }
+
+            .toolbar-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+            }
+
+            .audio-tracks-section {
+                max-height: 25%;
+                min-height: 60px;
+            }
+
+            .audio-track {
+                height: 40px;
+                min-height: 40px;
+            }
         }
 
         /* Phone portrait */
@@ -668,12 +719,23 @@
                 --cell-height: 16px;
                 --piano-width: 36px;
             }
-            .toolbar { gap: 4px; }
-            .toolbar-btn { padding: 6px 8px; font-size: 10px; }
-            .track-info { width: 70px; }
+
+            .toolbar {
+                gap: 4px;
+            }
+
+            .toolbar-btn {
+                padding: 6px 8px;
+                font-size: 10px;
+            }
+
+            .track-info {
+                width: 70px;
+            }
         }
     </style>
 </head>
+
 <body>
     <!-- Start Screen -->
     <div class="start-screen" id="startScreen">
@@ -741,7 +803,8 @@
             <div class="audio-tracks-section">
                 <div class="tracks-header">
                     <h3>TRACKS</h3>
-                    <button class="toolbar-btn" onclick="addAudioTrack()" style="padding:4px 8px;font-size:9px;">+ Add</button>
+                    <button class="toolbar-btn" onclick="addAudioTrack()" style="padding:4px 8px;font-size:9px;">+
+                        Add</button>
                 </div>
                 <div class="tracks-container" id="tracksContainer"></div>
             </div>
@@ -751,7 +814,7 @@
     <script>
         // Register Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js')
+            navigator.serviceWorker.register('./sw.js')
                 .then(reg => console.log('SW registered'))
                 .catch(err => console.log('SW registration failed:', err));
         }
@@ -761,7 +824,7 @@
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            document.getElementById('installHint').innerHTML = 
+            document.getElementById('installHint').innerHTML =
                 '💡 홈 화면에 추가하려면 브라우저 메뉴에서 "홈 화면에 추가"를 선택하세요';
         });
 
@@ -770,16 +833,16 @@
         const TOTAL_BEATS = TOTAL_BARS * BEATS_PER_BAR;
         const BAR_WIDTH = CELL_WIDTH * BEATS_PER_BAR;
         const GRID_TOTAL_WIDTH = CELL_WIDTH * TOTAL_BEATS;
-        const TRACK_COLORS = ['#00ff88','#ff3399','#00d4ff','#ffcc00','#9966ff','#ff6633','#33ff99','#ff66cc'];
+        const TRACK_COLORS = ['#00ff88', '#ff3399', '#00d4ff', '#ffcc00', '#9966ff', '#ff6633', '#33ff99', '#ff66cc'];
 
         let audioContext = null, isPlaying = false, bpm = 120, playheadPosition = 0;
         let animationFrame = null, startTime = 0, currentTrackIndex = 0, auditionEnabled = true;
         let isDrawing = false, drawStartBeat = 0, drawStartRow = 0, drawStartNote = '', previewNote = null;
         let tracks = [];
         const activeOscillators = new Map();
-        const keyNames = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
-        const octaves = [6,5,4,3,2,1];
-        const blackKeyIndices = [1,3,6,8,10];
+        const keyNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const octaves = [6, 5, 4, 3, 2, 1];
+        const blackKeyIndices = [1, 3, 6, 8, 10];
         const totalRows = octaves.length * 12;
 
         // Modal
@@ -829,8 +892,8 @@
                         <div class="track-info">
                             <input type="text" class="track-name-input" value="${t.name}" maxlength="12" style="color:${t.color};">
                             <div class="track-controls">
-                                <button class="track-btn solo ${t.solo?'active':''}" onclick="toggleSolo(this,${i})">S</button>
-                                <button class="track-btn mute ${t.muted?'active':''}" onclick="toggleMute(this,${i})">M</button>
+                                <button class="track-btn solo ${t.solo ? 'active' : ''}" onclick="toggleSolo(this,${i})">S</button>
+                                <button class="track-btn mute ${t.muted ? 'active' : ''}" onclick="toggleMute(this,${i})">M</button>
                                 <button class="track-btn delete" onclick="deleteAudioTrack(this)">✕</button>
                             </div>
                         </div>
@@ -939,7 +1002,7 @@
                     const t = tracks[currentTrackIndex];
                     const exists = t.notes.findIndex(n => n.row === drawStartRow &&
                         ((n.beat <= drawStartBeat && n.beat + n.length > drawStartBeat) ||
-                         (drawStartBeat <= n.beat && drawStartBeat + len > n.beat)));
+                            (drawStartBeat <= n.beat && drawStartBeat + len > n.beat)));
                     if (exists === -1) t.notes.push({ note: drawStartNote, row: drawStartRow, beat: drawStartBeat, length: len });
                     previewNote.remove();
                     previewNote = null;
@@ -1171,7 +1234,7 @@
         }
 
         function noteToFreq(name) {
-            const map = { 'C':0,'C#':1,'D':2,'D#':3,'E':4,'F':5,'F#':6,'G':7,'G#':8,'A':9,'A#':10,'B':11 };
+            const map = { 'C': 0, 'C#': 1, 'D': 2, 'D#': 3, 'E': 4, 'F': 5, 'F#': 6, 'G': 7, 'G#': 8, 'A': 9, 'A#': 10, 'B': 11 };
             const n = name.slice(0, -1), o = parseInt(name.slice(-1));
             return 440 * Math.pow(2, (map[n] + (o - 4) * 12 - 9) / 12);
         }
@@ -1337,7 +1400,7 @@
         if ('wakeLock' in navigator) {
             let wakeLock = null;
             const requestWakeLock = async () => {
-                try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
+                try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) { }
             };
             document.addEventListener('visibilitychange', () => {
                 if (document.visibilityState === 'visible' && isPlaying) requestWakeLock();
@@ -1345,4 +1408,5 @@
         }
     </script>
 </body>
+
 </html>

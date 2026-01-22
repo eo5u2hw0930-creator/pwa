@@ -2,7 +2,7 @@
   "name": "TabletDAW",
   "short_name": "TabletDAW",
   "description": "Mobile Music Studio - Create music anywhere",
-  "start_url": "/index.html",
+  "start_url": "./",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#0a0a0f",
@@ -51,7 +51,11 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["music", "entertainment", "productivity"],
+  "categories": [
+    "music",
+    "entertainment",
+    "productivity"
+  ],
   "shortcuts": [
     {
       "name": "New Project",
