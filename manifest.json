@@ -3,6 +3,7 @@
   "short_name": "TabletDAW",
   "description": "Mobile Music Studio - Create music anywhere",
   "start_url": "/pwa/",
+  "scope": "/pwa/",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#0a0a0f",
@@ -51,17 +52,12 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": [
-    "music",
-    "entertainment",
-    "productivity"
-  ],
   "shortcuts": [
     {
       "name": "New Project",
       "short_name": "New",
       "description": "Create a new music project",
-      "url": "/index.html?action=new"
+      "url": "/pwa/index.html?action=new"
     }
   ]
 }
