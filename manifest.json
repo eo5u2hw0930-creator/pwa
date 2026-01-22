@@ -2,7 +2,7 @@
   "name": "TabletDAW",
   "short_name": "TabletDAW",
   "description": "Mobile Music Studio - Create music anywhere",
-  "start_url": "./",
+  "start_url": "/pwa/",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#0a0a0f",
