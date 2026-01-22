@@ -814,9 +814,9 @@
     <script>
         // Register Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js')
-                .then(reg => console.log('SW registered'))
-                .catch(err => console.log('SW registration failed:', err));
+            navigator.serviceWorker.register('/pwa/sw.js', {
+                scope: '/pwa/'
+            });
         }
 
         // Install prompt
