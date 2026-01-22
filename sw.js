@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tabletdaw-v1';
+const CACHE_NAME = 'tabletdaw-v3';
 const urlsToCache = [
   '/',
   '/index.html',
